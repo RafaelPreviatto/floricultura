@@ -23,4 +23,11 @@ public class ClienteController {
     public ResponseEntity<Cliente> salvar(@RequestBody Cliente cliente) {
         return ResponseEntity.ok(clienteService.salvar(cliente));
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Cliente> buscarPorId(@PathVariable Long id) {
+        return clienteService.buscarPorId(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 }
